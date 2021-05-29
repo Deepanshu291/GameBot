@@ -3,17 +3,53 @@ import discord
 from discord import client
 from discord.ext  import commands
 import random
+from prsaw import RandomStuff
 
 client = commands.Bot(command_prefix="!")
 
 id=  710871109947490369
+chatbot_id = 848100441481019405
+api_key = "RAy26xdL9jdL"
+rs = RandomStuff(api_key=api_key)
+
+@client.command(name="version")
+async def version(ctx):
+    await ctx.message.channel.send("Version 1.0.4")
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name=" !game "))
+    await client.change_presence(activity=discord.Game(name=" !game || !h"))
     print("GameBot is Ready")
     bot = client.get_channel(id)
-    await bot.send('DogeBot is Live :)') 
+    await bot.send('GameBot is Live :)') 
+
+chatbot = 847424874271342603    
+
+@client.event
+async def on_message(msg):
+    if client.user == msg.author:
+        return 
+    if str(msg.channel) == "coffee-with-gamebot":
+        response =  rs.get_ai_response(msg.content)
+        await msg.reply(response)
+        print(response)
+    await client.process_commands(msg)    
+
+@client.command(aliases=['h'])
+async def helps(ctx):
+    em = discord.Embed(title = "GameBot Command List", description = "We have some really kick-ass  Game" , color = discord.Colour.blurple())
+    em.set_author(name=ctx.author.name)
+
+    em.add_field(name="!version",value="GameBot Version", inline=True)
+    # em.add_field(name="!server",value="Know your Server Information", inline=True)
+    em.add_field(name="!config",value=" this feature is in under developement :( ", inline=True)
+    em.add_field(name="!game ",value="!game @player1 @player2 and use !p (1-9) for place your move", inline=False)
+    em.add_field(name="Tictactoe",value=" Play this game with your friend in #tictactoe text-channel", inline=False)
+    em.add_field(name="Aichat ",value="want to chat with Bot go #coffee-with-gamebot", inline=True)
+    # em.add_field(name="Clean ",value=" #clean 5 0r #c 5 or use  cleanx,cx also", inline=True)
+
+    await ctx.send(embed=em) 
+
 
 # Game TicTakToe
 player1 = ""
@@ -54,6 +90,9 @@ async def game(ctx, p1: discord.Member, p2: discord.Member):
           board = [":white_large_square:", ":white_large_square:",":white_large_square:",
                     ":white_large_square:", ":white_large_square:",":white_large_square:",
                     ":white_large_square:", ":white_large_square:",":white_large_square:"]
+          board2 = [":one:", ":two:",":three:",
+                    ":four:", ":five:",":six:",
+                    ":seven:", ":eight:",":nine:"]          
           turn = ""
           gameOver = False
           count= 0
@@ -63,16 +102,18 @@ async def game(ctx, p1: discord.Member, p2: discord.Member):
 
         #   Print board
           line =""
-          for x in range(len(board)):
+          for x in range(len(board2)):
                if x == 2 or x==5 or x==8:
-                   line += " " + board[x]
+                   line += " " + board2[x]
                    await ctx.send(line)
                    line=""
                else:
-                   line += " " + board[x]
+                   line += " " + board2[x]
 
         #   check whos turn 
           num = random.randint(1,2)
+          await ctx.send("!p (1-9) for Place your Move")
+          await ctx.send("!q for Quit the Game :(")
           if num == 1:
               turn = player1
               await ctx.send("It is <@"+ str(player1.id)+">'s turn")
@@ -84,8 +125,8 @@ async def game(ctx, p1: discord.Member, p2: discord.Member):
 
 
 @client.command()
-async def on_message(ctx, pos: int):
-   if ctx.channel.id==game_id:
+async def p(ctx, pos: int):
+#    if ctx.channel.id==game_id:
         
     global turn
     global player1
@@ -133,13 +174,22 @@ async def on_message(ctx, pos: int):
         else:
             await ctx.send("It is not your turn.")
     else:
-        await ctx.send("Please start a new game using the !tictactoe command.")
+        await ctx.send("Please start a new game using the !game command.")
 
 def checkWinner(winningConditions, mark):
     global gameOver
     for condition in winningConditions:
         if board[condition[0]] == mark and board[condition[1]] == mark and board[condition[2]] == mark:
             gameOver = True
+
+@client.command()
+async def q(ctx):
+#    if ctx.channel.id==game_id:
+    
+    global gameOver
+    if not gameOver:
+        gameOver = True
+        await ctx.send("Thankyou for Playing :)")
 
 # @tictactoe.error
 async def tictactoe_error(ctx, error):
