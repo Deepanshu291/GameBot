@@ -7,6 +7,7 @@ from prsaw import RandomStuff
 
 client = commands.Bot(command_prefix="!")
 
+discord_token = "ODQ3ODY3NDc3NDU0NjE4NjQ1.YLEUHw.EVYfFuGtn6I4ccpRD9rjj8w_75M"
 id=  710871109947490369
 chatbot_id = 848100441481019405
 api_key = "RAy26xdL9jdL"
@@ -208,4 +209,4 @@ async def place_error(ctx, error):
 
     
 
-client.run("ODQ3ODY3NDc3NDU0NjE4NjQ1.YLEUHw.FkgdIp4U4IAD-VnO3RQVBfGReTQ")
+client.run(discord_token)
