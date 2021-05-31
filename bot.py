@@ -1,6 +1,7 @@
 from itertools import count
 import discord
 from discord import client
+from discord.enums import Status
 from discord.ext  import commands
 import random
 from prsaw import RandomStuff
@@ -19,7 +20,7 @@ async def version(ctx):
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name=" !game || !h"))
+    await client.change_presence(status=Status.online , activity=discord.Game(name=" !game || !h"))
     print("GameBot is Ready")
     bot = client.get_channel(id)
     await bot.send('GameBot is Live :)') 
