@@ -71,22 +71,27 @@ winningConditions = [
     [2,4,6]
 ]
 
-game_id = 847880536869044235
+game_id = [847880536869044235 , 848810155646779403]
 
 @client.command()
 async def game(ctx, p1: discord.Member, p2: discord.Member):
-   if ctx.channel.id != game_id:
+   if ctx.channel.id not in game_id :
       await ctx.send("This Command Only Work in #Game By Bot")
 
-   if ctx.channel.id == game_id:
+   if ctx.channel.id in game_id :
         
     global player1
     global player2
     global turn
     global gameOver
     global count
-
-    if gameOver:
+    
+    if p1 == p2:
+       await ctx.send("Pls Add Other Player2 :(")
+       gameOver=True
+       await ctx.send("Thankyou for Playing :)")
+  
+    elif gameOver:
           global board
           board = [":white_large_square:", ":white_large_square:",":white_large_square:",
                     ":white_large_square:", ":white_large_square:",":white_large_square:",
@@ -122,7 +127,7 @@ async def game(ctx, p1: discord.Member, p2: discord.Member):
               turn =player2
               await ctx.send("It is <@"+ str(player2.id)+">'s turn")  
     else:   
-        await ctx.send("A game is already in progress! Finish it before starting a new one.")                 
+          await ctx.send("A game is already in progress! Finish it before starting a new one.")                 
 
 
 @client.command()
