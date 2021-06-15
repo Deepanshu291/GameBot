@@ -18,6 +18,10 @@ rs = RandomStuff(api_key=api_key)
 async def version(ctx):
     await ctx.message.channel.send("Version 1.0.4")
 
+@client.command()
+async def me(ctx):
+    await ctx.message.channel.send("Hi I am GameBot")
+
 @client.event
 async def on_ready():
     await client.change_presence(status=Status.online , activity=discord.Game(name=" !game || !h"))
