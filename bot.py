@@ -4,7 +4,7 @@ from discord import client
 from discord.enums import Status
 from discord.ext  import commands
 import random
-# from prsaw2 import Client as ct 
+from prsaw2 import Client as ct 
 import os
 
 client = commands.Bot(command_prefix="!")
@@ -12,7 +12,8 @@ client = commands.Bot(command_prefix="!")
 id=  710871109947490369
 chatbot_id = 848100441481019405
 
-# rs = ct(key=os.environ['RSA-KEY'])
+rs = ct(key=os.environ['RSA-KEY'])
+# rs = ct(key='syxvajmYp0Ka')
 
 @client.command(name="version")
 async def version(ctx):
@@ -35,10 +36,10 @@ chatbot = 847424874271342603
 async def on_message(msg): 
     if client.user == msg.author:
         return 
-    # if str(msg.channel) == "coffee-with-gamebot":
-    #     response =  rs.get_ai_response(msg.content)
-    #     await msg.reply(response)
-    #     print(response)
+    if str(msg.channel) == "coffee-with-gamebot":
+        response =  rs.get_ai_response(msg.content)
+        await msg.reply(response)
+        print(response)
     await client.process_commands(msg)    
 
 @client.command(aliases=['h'])
@@ -220,3 +221,4 @@ async def place_error(ctx, error):
     
 
 client.run(os.environ['TOKEN'])
+# client.run('ODQ3ODY3NDc3NDU0NjE4NjQ1.YLEUHw.EVYfFuGtn6I4ccpRD9rjj8w_75M')
