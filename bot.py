@@ -4,7 +4,7 @@ from discord import client
 from discord.enums import Status
 from discord.ext  import commands
 import random
-from prsaw import RandomStuff
+from prsaw2 import Client
 import os
 
 client = commands.Bot(command_prefix="!")
@@ -12,8 +12,8 @@ client = commands.Bot(command_prefix="!")
 # discord_token = "ODQ3ODY3NDc3NDU0NjE4NjQ1.YLEUHw.EVYfFuGtn6I4ccpRD9rjj8w_75M"
 id=  710871109947490369
 chatbot_id = 848100441481019405
-api_key = "RAy26xdL9jdL"
-rs = RandomStuff(api_key=api_key)
+
+rs = Client(key=os.environ['RSA-KEY'])
 
 @client.command(name="version")
 async def version(ctx):
@@ -33,7 +33,7 @@ async def on_ready():
 chatbot = 847424874271342603    
 
 @client.event
-async def on_message(msg):
+async def on_message(msg): 
     if client.user == msg.author:
         return 
     if str(msg.channel) == "coffee-with-gamebot":
