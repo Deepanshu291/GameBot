@@ -5,6 +5,7 @@ from discord.enums import Status
 from discord.ext  import commands
 import random
 from prsaw import RandomStuff
+import os
 
 client = commands.Bot(command_prefix="!")
 
@@ -219,4 +220,4 @@ async def place_error(ctx, error):
 
     
 
-client.run(discord_token)
+client.run(os.environ('TOKEN'))
