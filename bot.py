@@ -4,8 +4,7 @@ from discord import client
 from discord.enums import Status
 from discord.ext  import commands
 import random
-# from prsaw2 import Client as ct 
-from randomstuff import Client as ct
+from prsaw2 import Client as ct 
 import os
 
 client = commands.Bot(command_prefix="!")
@@ -13,9 +12,8 @@ client = commands.Bot(command_prefix="!")
 id=  710871109947490369
 chatbot_id = 848100441481019405
 
-# rs = ct(key=os.environ['RSA-KEY'])
+rs = ct(key=os.environ['RSAKEY'])
 # rs = ct(key='syxvajmYp0Ka')
-rs = ct(api_key=os.environ['RSAKEY'])
 
 @client.command(name="version")
 async def version(ctx):
