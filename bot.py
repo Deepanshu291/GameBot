@@ -15,7 +15,7 @@ chatbot_id = 848100441481019405
 
 # rs = ct(key=os.environ['RSA-KEY'])
 # rs = ct(key='syxvajmYp0Ka')
-rs = ct(api_key=os.environ['RSA-KEY'])
+rs = ct(api_key=os.environ['RSAKEY'])
 
 @client.command(name="version")
 async def version(ctx):
