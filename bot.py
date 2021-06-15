@@ -221,4 +221,3 @@ async def place_error(ctx, error):
     
 
 client.run(os.environ['TOKEN'])
-# client.run('ODQ3ODY3NDc3NDU0NjE4NjQ1.YLEUHw.EVYfFuGtn6I4ccpRD9rjj8w_75M')
