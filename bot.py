@@ -6,10 +6,8 @@ from discord.ext  import commands
 import random
 import os
 import requests
-import os
 
-BOT_KEY = 'vYfvAY2ydmrv'
-# API_KEY = os.environ['RSAKEY']
+BOT_KEY = os.environ['RSAKEY']
 
 url = "https://random-stuff-api.p.rapidapi.com/ai"
 
