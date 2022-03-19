@@ -62,7 +62,7 @@ async def on_ready():
 async def on_message(msg): 
     if client.user == msg.author:
         return 
-    if str(msg.channel) == "coffee-with-gamebot" and str(msg.channel) == "chat_with_bot" :
+    if str(msg.channel) == "coffee-with-gamebot" or str(msg.channel) == "chat_with_bot" :
         # response =  rs.get_ai_response(msg.content)
         response = Bot(msg.content)
         await msg.reply(response)
