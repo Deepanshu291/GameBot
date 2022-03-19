@@ -4,6 +4,7 @@ from discord import client
 from discord.enums import Status
 from discord.ext  import commands
 import random
+from prsaw2 import Client as ct 
 from AI import Ai
 import os
 
@@ -12,7 +13,7 @@ client = commands.Bot(command_prefix="!")
 id=  710871109947490369
 chatbot_id = 848100441481019405
 
-
+API_KEY = os.environ['TOKEN']
 
 @client.command(name="version")
 async def version(ctx):
@@ -218,5 +219,5 @@ async def place_error(ctx, error):
     elif isinstance(error, commands.BadArgument):
         await ctx.send("Please make sure to enter an integer.")                    
 
-
-client.run(os.environ['TOKEN'])
+    
+client.run(API_KEY)

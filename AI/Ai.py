@@ -1,12 +1,10 @@
 import requests
 import os
 
-# API_KEY = 'vYfvAY2ydmrv'
-API_KEY = os.environ['RSAKEY']
+API_KEY = 'vYfvAY2ydmrv'
+# API_KEY = os.environ['RSAKEY']
 
 url = "https://random-stuff-api.p.rapidapi.com/ai"
-
-
 
 
 
