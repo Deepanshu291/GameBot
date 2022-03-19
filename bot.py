@@ -4,7 +4,7 @@ from discord import client
 from discord.enums import Status
 from discord.ext  import commands
 import random
-from prsaw2 import Client as ct 
+from AI import Ai
 import os
 
 client = commands.Bot(command_prefix="!")
@@ -12,8 +12,7 @@ client = commands.Bot(command_prefix="!")
 id=  710871109947490369
 chatbot_id = 848100441481019405
 
-rs = ct(key=os.environ['RSAKEY'])
-# rs = ct(key='syxvajmYp0Ka')
+
 
 @client.command(name="version")
 async def version(ctx):
@@ -37,7 +36,8 @@ async def on_message(msg):
     if client.user == msg.author:
         return 
     if str(msg.channel) == "coffee-with-gamebot":
-        response =  rs.get_ai_response(msg.content)
+        # response =  rs.get_ai_response(msg.content)
+        response = Ai.Bot(msg.content)
         await msg.reply(response)
         print(response)
     await client.process_commands(msg)    
@@ -219,5 +219,5 @@ async def place_error(ctx, error):
         await ctx.send("Please make sure to enter an integer.")                    
 
     
-
-client.run(os.environ['TOKEN'])
+key = 'ODQ3ODY3NDc3NDU0NjE4NjQ1.YLEUHw.uTadWSPn3XKql1TfU0-1Vk0Ui-E'
+client.run(key)

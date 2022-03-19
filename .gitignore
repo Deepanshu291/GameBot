@@ -1,2 +1,4 @@
-AI/
+
 env/
+Pipfile
+Pipfile.lock
