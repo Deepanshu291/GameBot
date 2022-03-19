@@ -37,7 +37,7 @@ def Bot(msg):
 client = commands.Bot(command_prefix="!")
 
 id=  710871109947490369
-chatbot_id = 848100441481019405
+chatbot_id = [848100441481019405,847424874271342603]
 
 API_KEY = os.environ['TOKEN']
 
@@ -56,13 +56,13 @@ async def on_ready():
     bot = client.get_channel(id)
     await bot.send('GameBot is Live :)') 
 
-chatbot = 847424874271342603    
+# chatbot = 847424874271342603    
 
 @client.event
 async def on_message(msg): 
     if client.user == msg.author:
         return 
-    if str(msg.channel) == "coffee-with-gamebot":
+    if str(msg.channel) == "coffee-with-gamebot" and msg.channel.id in chatbot_id:
         # response =  rs.get_ai_response(msg.content)
         response = Bot(msg.content)
         await msg.reply(response)
